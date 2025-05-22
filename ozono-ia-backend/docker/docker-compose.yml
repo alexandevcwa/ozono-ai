@@ -1,0 +1,73 @@
+version: '3.9'
+
+networks:
+  ozono-network:
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: ozono-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ozono-network
+
+  ftp:
+    image: stilliard/pure-ftpd:hardened
+    container_name: ozono-ftp
+    environment:
+      PUBLICHOST: ftp
+      FTP_USER_NAME: ${FTP_USER_NAME}
+      FTP_USER_PASS: ${FTP_USER_PASS}
+      FTP_USER_HOME: /home/ftpusers/user
+    volumes:
+      - ftp_data:/home/user
+    networks:
+      - ozono-network
+
+  backend:
+    image: alexandevcwa/ozono-ai:1.0.0-beta
+    container_name: ozono-backend
+    environment:
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      FTP_HOST: ftp
+      FTP_PASS: ${FTP_USER_PASS}
+      FTP_PORT: 21
+      FTP_USER: ${FTP_USER_NAME}
+      JWT_SECRET: :${JWT_SECRET}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PASS: ${MAIL_PASS}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USER: ${MAIL_USER}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_BASE_URL: https://api.openai.com/v1/chat/completions
+      OPENAI_ORGANIZATION: ${OPENAI_ORGANIZATION}
+      OPENAI_PROJECT: ${OPENAI_PROJECT}
+      URL_DOMAIN: ${URL_DOMAIN}
+    depends_on:
+      - postgres
+      - ftp
+    networks:
+      - ozono-network
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ozono-cloudflared
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARED_TOKEN}
+    depends_on:
+      - backend
+    networks:
+      - ozono-network
+
+volumes:
+  postgres_data:
+  ftp_data:

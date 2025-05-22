@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: ozono-ai-backend
+    version: @project.version@
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    hikari:
+      pool-name: ozono-ia-pool
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 600000
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASS}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttsl.enable: true
+      mail.smtp.starttls.checkserveridentity: true
+      mail.smtp.starttls.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.starttls.socketFactory.fallback: false
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+openai:
+  api-key: ${OPENAI_API_KEY}
+  organization: ${OPENAI_ORGANIZATION}
+  project: ${OPENAI_PROYECT}
+  base-url: ${OPENAI_BASE_URL}
+
+springdoc:
+  title: Ozono IA API
+  description: API for Ozono IA
+  version: @project.version@
+
+server:
+  port: 8080
+
+ftp:
+  client.host: ${FTP_HOST}
+  client.port: ${FTP_PORT}
+  client.user: ${FTP_USER}
+  client.password: ${FTP_PASS}
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 28800000
+
+web:
+  url: ${URL_DOMAIN}
