@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado del Análisis - Ozono</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f2fef4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .banner {
+            background: linear-gradient(90deg, #66bb6a, #43a047);
+            padding: 30px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .banner h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .banner p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #e8f5e9;
+        }
+
+        .content {
+            padding: 30px 40px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .content h2 {
+            font-size: 22px;
+            color: #2e7d32;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .label {
+            font-weight: bold;
+            font-size: 15px;
+            color: #388e3c;
+        }
+
+        .value {
+            font-size: 16px;
+            padding-left: 10px;
+            color: #444;
+        }
+
+        .uuid {
+            word-break: break-word;
+            color: #666;
+            font-family: monospace;
+        }
+
+        .footer {
+            background-color: #e8f5e9;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #4e944f;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Banner Ozono -->
+    <div class="banner">
+        <h1>Ozono</h1>
+        <p>Tecnología para un planeta más limpio</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <h2>🧪 Resultado del Análisis</h2>
+
+        <div class="field">
+            <span class="label">🔢 No. Análisis:</span>
+            <span class="value" th:text="${no_analysis}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">🧱 Material:</span>
+            <span class="value" th:text="${material}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">📄 Descripción:</span>
+            <span class="value" th:text="${description}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">♻️ Dificultad de Reciclaje:</span>
+            <span class="value" th:text="${difficulty}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">⏳ Tiempo de Desintegración:</span>
+            <span class="value" th:text="${disintegration}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">☣️ Nivel de Contaminación:</span>
+            <span class="value" th:text="${level}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">📎 Nombre de Archivo:</span>
+            <span class="value" th:text="${file_name}"></span>
+        </div>
+
+        <div class="field">
+            <span class="label">🆔 UUID:</span>
+            <span class="value uuid" th:text="${uuid}"></span>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer">
+        <p>&copy; 2025 Ozono. Todos los derechos reservados.</p>
+    </div>
+</div>
+</body>
+</html>

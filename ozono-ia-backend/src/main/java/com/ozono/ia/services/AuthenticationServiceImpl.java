@@ -61,6 +61,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setPassword(passwordEncoder.encode(dto.password()));
         user.setStatus("E");
         user.setEmailConfirmed("N");
+        user.setCredit(3);
         userRepository.save(user);
 
         String token = jwtSecurityService.generateToken(user);
@@ -81,15 +82,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private String generateUsername(String firstName, String lastName){
         String first = firstName.trim().toLowerCase();
         String last = lastName.trim().toLowerCase();
-
-        // Tomar las 3 primeras letras del nombre y las 3 primeras del apellido (o menos si son cortos)
         String part1 = first.length() >= 3 ? first.substring(0, 3) : first;
         String part2 = last.length() >= 3 ? last.substring(0, 3) : last;
-
-        // Generar un número aleatorio entre 100 y 999
         int number = new Random().nextInt(900) + 100;
-
-        // Combinar todo
         return part1 + part2 + number;
     }
 }

@@ -2,16 +2,19 @@ package com.ozono.ia.services;
 
 import com.ozono.ia.client.*;
 import com.ozono.ia.dto.AnalysisDto;
+import com.ozono.ia.event.AnalysisCompletedEvent;
 import com.ozono.ia.exception.ServiceException;
 import com.ozono.ia.mapper.AnalysisMapper;
 import com.ozono.ia.model.Analysis;
 import com.ozono.ia.model.File;
+import com.ozono.ia.model.User;
 import com.ozono.ia.repository.FileRepository;
 import com.ozono.ia.repository.AnalysisRepository;
 import com.ozono.ia.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -21,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -35,6 +39,7 @@ public class AnalyzerServiceImpl implements AnalyzerService {
     private final CdnMediaAccessClientImpl cdnMediaAccessClient;
     private final ImageAnalyzerAI imageAnalyzerAI;
     private final AnalysisRepository analysisRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
 
     @Value("${web.url}")
@@ -43,17 +48,36 @@ public class AnalyzerServiceImpl implements AnalyzerService {
     @Override
     public AnalysisDto analyzeImage(MultipartFile multipartFile) {
 
+        User user = userRepository.findByUsername(getUsername()).orElseThrow(() ->
+                new ServiceException(HttpStatus.UNAUTHORIZED, "User not found"));
+
+
+        if (user.getCredit() == 0){
+            throw new ServiceException(HttpStatus.BAD_REQUEST, "No credits available");
+        }
+        if ("N".equalsIgnoreCase(user.getEmailConfirmed())){
+            throw new ServiceException(HttpStatus.BAD_REQUEST, "Email not confirmed");
+        }
+
         File fileObj = saveFileInfo(multipartFile);
+        AnalysisDto dto = null;
         try {
             ftpClient.storeFile(multipartFile.getInputStream(), multipartFile.getOriginalFilename());
             String tempToken = cdnTokenGenerator.generateToken(24);
             cdnMediaAccessClient.addTemporaryToken(fileObj.getFileUuid(), tempToken);
             String cdnUrl = fileObj.getFileUrl() + "?token=" + tempToken;
             log.info(cdnUrl);
-            return analyzeImage(cdnUrl, fileObj);
+            dto = analyzeImage(cdnUrl, fileObj);
+            return dto;
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new ServiceException(HttpStatus.BAD_REQUEST, "Error uploading file");
+        }
+        finally {
+            if (dto != null){
+                userRepository.decreaseCreditByUsername(getUsername());
+                applicationEventPublisher.publishEvent(new AnalysisCompletedEvent(this,user.getEmail(),dto));
+            }
         }
     }
 
@@ -82,7 +106,7 @@ public class AnalyzerServiceImpl implements AnalyzerService {
                 .fileName(file.getOriginalFilename())
                 .fileType(file.getContentType())
                 .fileSize(file.getSize())
-                .fileUrl(webUrl + "/ozono/cdn/pics/" + uuid)
+                .fileUrl(webUrl + "/ozono/cdn/uuid/" + uuid)
                 .owner(userRepository.findIdByUsername(username))
                 .fileUuid(uuid)
                 .fileExtension(file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1))
@@ -93,5 +117,10 @@ public class AnalyzerServiceImpl implements AnalyzerService {
     @Override
     public Page<AnalysisDto> getAllAnalysisByUserAuthenticated() {
         return null;
+    }
+
+    private String getUsername(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getPrincipal().toString();
     }
 }

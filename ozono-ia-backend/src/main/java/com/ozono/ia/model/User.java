@@ -54,4 +54,7 @@ public class User {
 
     @Column(name = "email_confirmed",nullable = false)
     private String emailConfirmed;
+
+    @Column(name = "credits")
+    private Integer credit;
 }

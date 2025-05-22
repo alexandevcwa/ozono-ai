@@ -1,5 +1,3 @@
-version: '3.9'
-
 networks:
   ozono-network:
 
@@ -31,7 +29,7 @@ services:
       - ozono-network
 
   backend:
-    image: alexandevcwa/ozono-ai:1.0.0-beta
+    image: alexandevcwa/ozono-ai:1.0.2-beta
     container_name: ozono-backend
     environment:
       DB_PASS: ${POSTGRES_PASSWORD}
