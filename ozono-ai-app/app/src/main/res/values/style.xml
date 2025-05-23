@@ -1,0 +1,9 @@
+<resources>
+    <style name="KDialog" parent="Theme.AppCompat.Dialog">
+<!--        <item name="android:windowBackground">@drawable/k_dialog_background</item>-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+
+    </style>
+</resources>

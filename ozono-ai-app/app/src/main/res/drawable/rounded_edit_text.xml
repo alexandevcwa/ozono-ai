@@ -3,7 +3,7 @@
     <corners android:radius="16dp" />
     <stroke
         android:width="3dp"
-        android:color="@color/blue_sky_light" />
+        android:color="@color/divider" />
     <padding
         android:left="6dp"
         android:top="6dp"

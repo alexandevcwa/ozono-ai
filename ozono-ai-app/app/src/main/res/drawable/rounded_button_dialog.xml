@@ -1,0 +1,23 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/background_secondary" />
+            <corners android:radius="16dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/background_primary" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <gradient
+                android:angle="45"
+                android:startColor="@color/background_primary"
+                android:endColor="@color/divider" />
+            <corners android:radius="16dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/divider" />
+        </shape>
+    </item>
+</selector>

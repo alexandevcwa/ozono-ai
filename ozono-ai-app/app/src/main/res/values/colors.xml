@@ -22,7 +22,7 @@
 
     <!-- Fondos -->
     <color name="background_primary">#FFFFFFFF</color> <!-- Blanco -->
-    <color name="background_secondary">#FFF0F9FF</color> <!-- Azul claro suave -->
+    <color name="background_secondary">#FAFAFA</color> <!-- Azul claro suave -->
 
     <!-- Botones -->
     <color name="button_primary">#FF00AFFF</color> <!-- Azul celeste -->
@@ -31,4 +31,12 @@
 
     <!-- Sombras o bordes suaves -->
     <color name="divider">#FFE0E0E0</color>
+
+
+    <color name="alert_success">#4CAF50</color>
+    <color name="alert_error">#F44336</color>
+    <color name="alert_warning">#FFEB3B</color>
+    <color name="alert_info">#2196F3</color>
+
+
 </resources>

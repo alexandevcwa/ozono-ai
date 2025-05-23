@@ -8,94 +8,117 @@
     android:background="@color/white"
     tools:context=".activity.LoginActivity">
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-10dp"
+        android:background="@drawable/bg_diagonal_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_marginBottom="32dp"
         android:contentDescription="Correo"
         android:src="@drawable/banner"
-        app:layout_constraintBottom_toTopOf="@id/login_form"
+        app:layout_constraintBottom_toTopOf="@id/login_card"
         app:layout_constraintEnd_toEndOf="@id/main"
         app:layout_constraintStart_toStartOf="@id/main" />
 
-    <LinearLayout
-        android:id="@+id/login_form"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="24dp"
+        android:backgroundTint="@color/background_secondary"
+        android:maxWidth="350dp"
+        android:minWidth="320dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="12dp"
         app:layout_constraintBottom_toBottomOf="@id/main"
         app:layout_constraintEnd_toEndOf="@id/main"
         app:layout_constraintStart_toStartOf="@id/main"
         app:layout_constraintTop_toTopOf="@id/main">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="Email"
-            android:textColor="@color/text_secondary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_margin="12dp"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_edit_text"
-            android:inputType="textEmailAddress"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:autofillHints="emailAddress"
-            />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Email"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="Password"
-            android:textColor="@color/text_secondary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="8dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/rounded_edit_text"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_edit_text"
-            android:inputType="textPassword"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Password"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            />
-        <Button
-            android:id="@+id/register_button"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button"
-            android:text="Sign Up"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_edit_text"
+                android:inputType="textPassword"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/sing_up_button"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"

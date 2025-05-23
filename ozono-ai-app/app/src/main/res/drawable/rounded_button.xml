@@ -2,7 +2,7 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/button_secondary" />
-            <corners android:radius="24dp" />
+            <corners android:radius="16dp" />
             <stroke
                 android:width="2dp"
                 android:color="@color/button_primary" />
@@ -14,7 +14,7 @@
                 android:angle="45"
                 android:startColor="@color/button_primary"
                 android:endColor="@color/button_secondary" />
-            <corners android:radius="24dp" />
+            <corners android:radius="16dp" />
             <stroke
                 android:width="2dp"
                 android:color="@color/blue_medium" />
