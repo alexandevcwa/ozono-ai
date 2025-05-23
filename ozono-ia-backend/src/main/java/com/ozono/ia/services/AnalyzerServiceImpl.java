@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@Service
+@Service("analyzerServiceImpl")
 @RequiredArgsConstructor
 public class AnalyzerServiceImpl implements AnalyzerService {
 

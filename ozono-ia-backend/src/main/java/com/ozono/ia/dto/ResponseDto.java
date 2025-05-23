@@ -2,6 +2,8 @@ package com.ozono.ia.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -12,4 +14,5 @@ public class ResponseDto {
     private String message;
     private String phrase;
     private String extra;
+    private LocalDateTime date;
 }

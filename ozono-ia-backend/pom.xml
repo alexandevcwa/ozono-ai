@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ozono</groupId>
     <artifactId>ozono-ai</artifactId>
-    <version>1.0.2-beta</version>
+    <version>1.0.3-beta</version>
     <name>ozono-ia-backend</name>
     <description>ozono-ia-backend</description>
     <url/>
@@ -69,6 +69,12 @@
             <groupId>com.openai</groupId>
             <artifactId>openai-java</artifactId>
             <version>1.6.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>error_prone_annotations</artifactId>
+                    <groupId>com.google.errorprone</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-net</groupId>
@@ -114,8 +120,31 @@
             <artifactId>caffeine</artifactId>
             <version>3.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers-standard-package</artifactId>
+            <version>3.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.healthmarketscience.jackcess</groupId>
+                    <artifactId>jackcess-encrypt</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
