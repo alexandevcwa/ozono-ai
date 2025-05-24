@@ -1,12 +1,14 @@
 package com.ozono.ia.controller;
 
 import com.ozono.ia.dto.ResponseDto;
+import com.ozono.ia.dto.TokenDto;
 import com.ozono.ia.dto.UserAuthDto;
 import com.ozono.ia.dto.UserRegisterDto;
 import com.ozono.ia.services.AuthenticationService;
 import com.ozono.ia.services.EmailConfirmationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.antlr.v4.runtime.Token;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,10 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(@Valid @RequestBody UserAuthDto dto) {
-        return ResponseEntity.ok(authenticationService.authenticate(dto.email(), dto.password()));
+    public ResponseEntity<TokenDto> authenticate(@Valid @RequestBody UserAuthDto dto) {
+        return ResponseEntity.ok(
+                new TokenDto(authenticationService.authenticate(dto.email(), dto.password()))
+        );
     }
 
     @PostMapping("/register")
