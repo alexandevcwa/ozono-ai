@@ -1,5 +1,6 @@
 package com.ozono.service
 
+import com.ozono.repository.AnalyzerRepository
 import com.ozono.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
@@ -15,6 +16,12 @@ object ServiceModule {
     @Singleton
     fun authService(authRepository: AuthRepository): AuthService {
         return AuthServiceImpl(authRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun photoAnalyzerService(analyzerRepository: AnalyzerRepository): PhotoAnalyzerService{
+        return PhotoAnalyzerServiceImpl(analyzerRepository)
     }
 
 }

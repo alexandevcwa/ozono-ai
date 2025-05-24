@@ -18,8 +18,12 @@ class AuthRepositoryImpl(
     ) {
         runBlocking {
             val response = authNetwork.login(Authentication(email, password))
-            val token = responseHandler(response)
-            tokenInterceptor.setToken(token)
+            if (response.isSuccessful) {
+                val token = response.body()?.token
+                tokenInterceptor.setToken(token!!)
+            }else {
+                responseHandler(response)
+            }
         }
     }
 

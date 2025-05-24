@@ -68,7 +68,9 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
+    implementation("com.google.android.material:material:1.12.0") // o superior estable si aplica
 
 
 }

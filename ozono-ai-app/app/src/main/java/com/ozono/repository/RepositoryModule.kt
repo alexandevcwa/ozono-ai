@@ -1,5 +1,6 @@
 package com.ozono.repository
 
+import com.ozono.network.AnalyzerNetwork
 import com.ozono.network.AuthNetwork
 import com.ozono.network.TokenInterceptor
 import dagger.Module
@@ -19,6 +20,14 @@ object RepositoryModule {
         tokenInterceptor: TokenInterceptor
     ): AuthRepository {
         return AuthRepositoryImpl(authNetwork, tokenInterceptor)
+    }
+
+    @Provides
+    @Singleton
+    fun analyzerRepository(
+        analyzerNetwork: AnalyzerNetwork
+    ): AnalyzerRepository {
+        return AnalyzerRepositoryImpl(analyzerNetwork)
     }
 
 }
