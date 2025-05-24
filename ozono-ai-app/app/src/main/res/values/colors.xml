@@ -9,11 +9,16 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Colores base (extraídos de la imagen) -->
+    <color name="blue_dark">#011551</color>
+    <color name="blue_light">#FF3DC7FF</color>
+    <color name="blue_dark_medium">#0D47A1</color>
     <color name="blue_sky_light">#FF3DC7FF</color>
     <color name="blue_celeste">#FF00AFFF</color>
     <color name="blue_medium">#FF4089E4</color>
     <color name="blue_lavender_light">#FFB3D5FF</color>
     <color name="blue_ice">#FFE5F4FF</color>
+    <color name="blue_ice_light">#FFB3D5FF</color>
+
 
     <!-- Colores para texto -->
     <color name="text_primary">#FF1A1A1A</color> <!-- Negro suave para títulos -->

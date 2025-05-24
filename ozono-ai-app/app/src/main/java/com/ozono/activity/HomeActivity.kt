@@ -22,10 +22,12 @@ import com.ozono.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
+import com.ozono.model.Analysis
 import com.ozono.service.PhotoAnalyzerService
 import com.ozono.util.KDialog
 import com.ozono.util.KIcon
 import com.ozono.util.KProperties
+import com.ozono.util.KWaitingDialog
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -134,7 +136,8 @@ class HomeActivity : AppCompatActivity() {
                     var compressedFile = compressImage(file)
                     uploadImage(compressedFile)
                 } else {
-                    Toast.makeText(this, "Archivo de imagen no encontrado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Archivo de imagen no encontrado", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } ?: run {
                 Toast.makeText(this, "Archivo de imagen no creado", Toast.LENGTH_SHORT).show()
@@ -146,28 +149,61 @@ class HomeActivity : AppCompatActivity() {
         val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
-        lifecycleScope.launch {
+        KWaitingDialog(this, "Analizando imagen", false) {
             val result = photoAnalyzerService.analyzePhoto(body)
             if (result.isSuccess) {
                 val analysis = result.getOrNull()
-                // Aquí puedes mostrar los resultados si quieres
+                displayResults(analysis!!)
             } else {
                 runOnUiThread {
                     KDialog(this@HomeActivity).inflate()
                         .show(
                             KProperties.Builder()
                                 .title("Error de análisis")
-                                .description(result.exceptionOrNull()?.message ?: "Error desconocido")
-                                .icon(KIcon.ERROR)
+                                .description(
+                                    result.exceptionOrNull()?.message ?: "Error desconocido"
+                                )
+                                .cancelable(false)
+                                .icon(KIcon.WARNING)
                                 .textButton("Ok")
                                 .build()
                         )
                 }
             }
+        }.show()
+    }
+
+    private fun displayResults(analysis: Analysis) {
+        runOnUiThread {
+
+            KDialog(this).inflate()
+                .show(
+                    KProperties.Builder()
+                        .title("Análisis completado")
+                        .description("Resultados del análisis de la imagen satisfactorios")
+                        .cancelable(false)
+                        .icon(KIcon.SUCCESS)
+                        .textButton("Ok")
+                        .build()
+                )
+
+            codeTextView.text = analysis.analysisId.toString()
+            materialTextView.text = analysis.materialType
+            descriptionTextView.text = analysis.materialDescription
+            difficultyTextView.text = analysis.difficulty
+            disintegrationTextView.text = analysis.disintegration
+            contaminationTextView.text = analysis.contaminationLevel
+            fileNameTextView.text = analysis.imageContent?.fileName ?: "No disponible"
+            uuidTextView.text = analysis.imageContent?.fileUuid ?: "No disponible"
         }
     }
 
-    private fun compressImage(file: File, maxWidth: Int = 1024, maxHeight: Int = 1024, quality: Int = 80): File {
+    private fun compressImage(
+        file: File,
+        maxWidth: Int = 1024,
+        maxHeight: Int = 1024,
+        quality: Int = 80
+    ): File {
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, Uri.fromFile(file))
 
         // Redimensionar manteniendo proporciones

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_medium"
+    android:background="@drawable/bg_home_activity"
     tools:context=".activity.HomeActivity">
 
     <View
@@ -24,7 +24,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wellcome to Ozono"
+        android:text="Bienvenido a OZono"
         android:textColor="@color/background_primary"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -52,21 +52,23 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Código de Analisis"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/code_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
+
                 tools:text="1505" />
 
         </LinearLayout>
@@ -77,21 +79,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tipo de Material"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/material_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -102,22 +104,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Descripción"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/description_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -128,21 +129,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dificultad de Reciclake"
-                android:textColor="@color/text_secondary" />
+                android:text="Dificultad de Reciclaje"
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/difficulty_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -153,21 +154,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Desintegración"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/disintegration_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -178,21 +179,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nivel de Contaminación"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/contamination_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -203,21 +204,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre Archivo"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/blue_dark_medium" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/file_name_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
@@ -228,21 +229,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/bg_text_view_info"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_secondary"
-                tools:text="UUID" />
+                android:textColor="@color/blue_dark_medium"
+                android:text="UUID" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/uuid_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="@color/blue_dark"
+                android:textSize="15sp"
                 tools:text="1505" />
 
         </LinearLayout>
